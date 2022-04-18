@@ -24,48 +24,46 @@ let questions = [
   },
     {
     numb: 3,
-    question: "What does PHP stand for?",
-    answer: "Hypertext Preprocessor",
+    question: "What year was JavaScript created?",
+    answer: "1995",
     options: [
-      "Hypertext Preprocessor",
-      "Hypertext Programming",
-      "Hypertext Preprogramming",
-      "Hometext Preprocessor"
+      "1996",
+      "2001",
+      "1995",
+      "2000"
     ]
   },
     {
     numb: 4,
-    question: "What does SQL stand for?",
-    answer: "Structured Query Language",
+    question: "Which one is not a JavaScript Conditional?",
+    answer: "If And Statement",
     options: [
-      "Stylish Question Language",
-      "Stylesheet Query Language",
-      "Statement Question Language",
-      "Structured Query Language"
+      "If Statement",
+      "If And Statement",
+      "Else Statement",
+      "Else If Statement"
     ]
   },
     {
     numb: 5,
-    question: "What does XML stand for?",
+    question: "How to declare a variable in JavaScript?",
     answer: "eXtensible Markup Language",
     options: [
-      "eXtensible Markup Language",
-      "eXecutable Multiple Language",
-      "eXTra Multi-Program Language",
-      "eXamine Multiple Language"
+      "a = 5;",
+      "const name = cat;",
+      "let score = won",
+      "var date = current"
     ]
   },
-  // you can uncomment the below codes and make duplicate as more as you want to add question
-  // but remember you need to give the numb value serialize like 1,2,3,5,6,7,8,9.....
-  //   {
-  //   numb: 6,
-  //   question: "Your Question is Here",
-  //   answer: "Correct answer of the question is here",
-  //   options: [
-  //     "Option 1",
-  //     "option 2",
-  //     "option 3",
-  //     "option 4"
-  //   ]
-  // },
+   {
+   numb: 6,
+   question: "Which one is not a JavaScript Operator",
+   answer: "^",
+   options: [
+     "+",
+     "*",
+     "^",
+     "-"
+   ]
+ },
 ];
