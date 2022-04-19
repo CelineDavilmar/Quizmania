@@ -55,7 +55,7 @@ body{
     border: none;
     border-radius: 5px;
     background: rgb(131, 16, 131);
-    /*cursor:none;*/
+  
 }
 .info_box{
     width: 540px;
@@ -164,13 +164,7 @@ body{
     border: 1px solid #343a40;
     user-select: none;
 }
-/*.quiz_box header .time_line{
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    height: 3px;
-    background: rgb(131, 16, 131);
-}*/
+
 section{
     padding: 25px 30px 20px 30px;
     background: #fff;
@@ -228,16 +222,7 @@ section .option_list .option .icon{
     transition: all 0.3s ease;
     line-height: 24px;
 }
-/*.option_list .option .icon.tick{
-    color: #23903c;
-    border-color: #23903c;
-    background: #d4edda;
-}
-.option_list .option .icon.cross{
-    color: #a42834;
-    background: #f8d7da;
-    border-color: #a42834;
-}*/
+
 footer{
     height: 60px;
     padding: 0 30px;

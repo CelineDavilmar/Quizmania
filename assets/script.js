@@ -6,17 +6,19 @@ const continue_btn = info_box.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
 const result_box = document.querySelector(".result_box");
 const option_list = document.querySelector(".option_list");
-const timeText = document.querySelector(".timer .time_left_txt");
-const timeCount = document.querySelector(".timer .timer_sec");
+let timeText = document.querySelector(".timer .time_left_txt");
+let timeCount = document.querySelector(".timer .timer_sec");
 
 // if startQuiz button clicked
 start_btn.onclick = ()=>{
     info_box.classList.add("activeInfo"); //show info box
 }
+
 // if exitQuiz button clicked
 exit_btn.onclick = ()=>{
     info_box.classList.remove("activeInfo"); //hide info box
 }
+
 // if continueQuiz button clicked
 continue_btn.onclick = ()=>{
     info_box.classList.remove("activeInfo"); //hide info box
@@ -43,7 +45,6 @@ restart_quiz.onclick = ()=>{
     que_count = 0; //counting questions
     userScore = 0; //keeping score
     showQuetions(que_count); //calling showQestions function
-    //queCounter(que_numb); //passing que_numb value to queCounter
     startTimer(timeValue); //calling startTimer function
     timeText.textContent = "Time Left"; //change the text of timeText to Time Left
     next_btn.classList.remove("show"); //hide the next button
@@ -61,7 +62,6 @@ const bottom_ques_counter = document.querySelector("footer .total_que");
 next_btn.onclick = ()=>{
     if(que_count < questions.length - 1){ //if question count is less than total question length
         que_count++; //increment the que_count value
-        //que_numb++; //increment the que_numb value
         showQuetions(que_count); //calling showQestions function
         timeText.textContent = "Time Left"; //change the timeText to Time Left
         next_btn.classList.remove("show"); //hide the next button
@@ -104,7 +104,7 @@ function optionSelected(answer){
         console.log("Your correct answers = " + userScore);
     }else{
         answer.classList.add("incorrect"); //adding red color to correct selected option
-        time -= 15;
+        timeText -= 15;
         console.log("Wrong Answer");
         for(i=0; i < allOptions; i++){
             if(option_list.children[i].textContent == correctAns){ //if there is an option which is matched to an array answer 
@@ -137,6 +137,7 @@ function showResult(){
         scoreText.innerHTML = scoreTag;
     }
 }
+
 function startTimer(time){
     counter = setInterval(timer, 1000);
     
