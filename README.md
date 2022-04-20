@@ -10,9 +10,6 @@ HTML CSS JavaScript
 https://celinedavilmar.github.io/Quizmania/
 
 # Screenshots of Website
-<img src="./">
-<img src="../QuestionsScreen.png"/>
-<img src="./RulesScreen.png"/>
-<img src="./StartScreen.png"/>
-
-
+<img src="./assets/QuestionsScreen.png"/>
+<img src="./assets/RulesScreen.png"/>
+<img src="./assets/StartScreen.png"/>
