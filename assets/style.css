@@ -10,6 +10,13 @@
 }
 body{
     background: #8fdcff;
-    max-width: max-content;
-    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.title, .info_box {
+    text-align: center;
 }
