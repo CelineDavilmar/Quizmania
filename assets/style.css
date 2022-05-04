@@ -20,3 +20,7 @@ body{
 .title, .info_box {
     text-align: center;
 }
+
+#timer {
+    text-align: center;
+}

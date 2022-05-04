@@ -67,13 +67,31 @@ $(document).ready(function() {
   $('.nxtButton').hide();
 
     $("#start").click(function () {
+
+      var sec = 150;
+      var time = setInterval(countdownTimer, 1000);
+
+    function countdownTimer() {
+        document.getElementById('timer').innerHTML = "You have " + sec + " seconds left";
+        sec--;
+
+      if (sec == -1) {
+        clearInterval(time);
+        alert("Times up.");
+        location.reload();
+
+    } else {
+      //wrong answer choosen -15 seconds
+    }
+}
+
       
       $('.info_box').hide();
       $('.nxtButton').show();
       $(".question").html(questionList.qnum.question);
-      let answers = questionList.qnum.options;
       $(".answerOptions").html(
-        function() {
+
+        function multipleChoice() {
         for (i = 0; i < 4; i++) {
           var radioBtn = $('<input type="radio" name="rbtnOptions" class="radiobtn"/>');
           $('.radiobtn').html(questionList.qnum.options)
