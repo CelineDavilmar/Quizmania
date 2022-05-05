@@ -1,4 +1,5 @@
 var questionIndex = 0;
+var answerIndex = 1;
 
 var questionList = [
 
@@ -72,7 +73,7 @@ function displayQuestion() {
     $(".question").html(questionList[questionIndex].question);
     $('.answerOptions').empty();
     for (i = 0; i < 4; i++) {
-        var radioBtn = $('<input type="radio" name="' + i +'" id="radiobtn" class="radiobtn" value="' + questionList[questionIndex].options[i] +'"/>');
+        var radioBtn = $('<input type="radio" name="selection" id="radiobtn" class="radiobtn" value="' + questionList[questionIndex].options[i] +'"/>');
         radioBtn.appendTo('.answerOptions');
         var answers = $(document.createElement('label')).prop({
             type: 'label',
@@ -135,7 +136,7 @@ $(document).ready(function () {
         }
 
         $('input[type="radio"]:checked').each(function() {
-          let id = $(this).attr('name');
+          let id = answerIndex++;
           let value = $(this).val();
           localStorage.setItem(id, value);
           return false;
