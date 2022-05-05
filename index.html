@@ -16,8 +16,10 @@
         <div class="rule-list">
             <div class="rules">1. Once you click start the timer will start.</div>
             <div class="rules">2. Once you select your answer, it can't be undone.</div>
-            <div class="rules">3. If a wrong anser is selected 15 seconds will be deducted from your remaining time.</div>
-            <div class="rules">4. You can't exit from the Quiz while you're playing.</div>
+            <div class="rules">3. You can't exit from the Quiz while you're playing.</div>
+            <div class="rules">4. You can't continue without selecting an option.</div>
+            <div class="rules">5. If a wrong anser is selected 15 seconds will be deducted from your remaining time.</div>
+            
         </div>
         <div class="btn">
             <!-- Start Button -->
@@ -42,9 +44,6 @@
             <div class="nxtButton">
 
             </div>
-            <div id="ansSelect">
-
-            </div>
         </section>
         <!-- footer of Quiz Box -->
          <footer class="footer">
@@ -52,13 +51,21 @@
         </footer> 
     </div>
     <!-- Result Box -->
-    <!-- <div class="result_box">
+    <div class="result_box">
         <div class="completed">You've completed the Quiz!</div>
         <div class="btn">
             <button class="restart">Restart Quiz</button>
             <button class="quit">Quit Quiz</button>
+            <h1>The asnswers selected are: </h1>
+            <ul id="ansSelect">
+
+            </ul>
+            <h1>The correct answers are: </h1>
+            <ul id="correctSelect">
+
+            </ul>
         </div>
-    </div> -->
+    </div>
     
     <!-- Quiz Codes -->
     <script src="./assets/script.js"></script>

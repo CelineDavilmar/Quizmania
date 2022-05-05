@@ -69,6 +69,7 @@ var secondsRemaining;
 var timeHandler;
 var radioSelector;
 
+
 function displayQuestion() {
     $(".question").html(questionList[questionIndex].question);
     $('.answerOptions').empty();
@@ -88,11 +89,19 @@ function displayQuestion() {
 $(document).ready(function () {
     $('.nxtButton').hide();
     $('#ansSelect').hide();
+    $('.result_box').hide();
 
-    $("#start").click(function () {
+    $('#start, .restart').click(function() {
+
+        $('.rule_box').hide();
+        $('.nxtButton').show();
+        //$('.result_box').hide();
+        $('.quiz_box').show();
+        displayQuestion();
 
         secondsRemaining = 150;
         timeHandler = setInterval(countdownTimer, 1000);
+        let x = $('input[type="radio"]:checked').value;
 
         function countdownTimer() {
             document.getElementById('timer').innerHTML = "You have " + secondsRemaining + " seconds left";
@@ -101,17 +110,13 @@ $(document).ready(function () {
             if (secondsRemaining < 0) {
                 clearInterval(timeHandler);
                 alert("Times up.");
-                location.reload();
 
-            } else {
-                //wrong answer choosen -15 seconds
-            }
+            } /* if (x != questionList[questionIndex].ans[i]){
+              console.log(x);
+              console.log(questionList[questionIndex].ans[i]);
+              secondsRemaining = secondsRemaining - 15;
+            } */
         }
-
-        $('.rule_box').hide();
-        $('.nxtButton').show();
-        displayQuestion();
-
 
     });
 
@@ -139,21 +144,50 @@ $(document).ready(function () {
           let id = answerIndex++;
           let value = $(this).val();
           localStorage.setItem(id, value);
-          return false;
+
+          var answerChoice = $(document.createElement('li')).prop({
+            type: 'li',
+            innerHTML: value,
+            class: 'answerChoices',
+            value: "text"
+        })
+          answerChoice.appendTo('#ansSelect');
+
+          var correctChoice = $(document.createElement('li')).prop({
+            type: 'li',
+            innerHTML: questionList[questionIndex].ans,
+            class: 'correctanswerChoices',
+            value: "text"
+        })
+          correctChoice.appendTo('#correctSelect');
+
+          //$('ansSelect').append(localStorage.getItem(value));
+          //return false;
+
+          if(value != questionList[questionIndex].ans){
+            console.log(value);
+            console.log(questionList[questionIndex].ans)
+            secondsRemaining = secondsRemaining - 15;
+
+          }
       });
 
-        ansSelect.innerText = selectedOption ? `You selected ${selectedOption}` : `You have not made a selection`;
+        //ansSelect.innerText = selectedOption ? `You selected ${selectedOption}` : `You have not made a selection`;
         questionIndex++;
 
         if ((questionIndex < questionList.length) && (selectedOption.length > 0)) {
             displayQuestion();
 
         } else {
+          $('.quiz_box').hide()
+          $('.result_box').show();
           $('#ansSelect').show();
+          
         }
 
     });
 
+    
 
 });
 
