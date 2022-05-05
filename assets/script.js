@@ -129,16 +129,6 @@ $(document).ready(function () {
     );
 
     $('.contbtn').click(function () {
-        
-        var radioOptions = document.querySelectorAll('input[type="radio"]');
-        let selectedOption;
-
-        for (const radioOption of radioOptions){
-          if (radioOption.checked){
-            selectedOption = radioOption.value;
-            break
-          }
-        }
 
         $('input[type="radio"]:checked').each(function() {
           let id = answerIndex++;
@@ -170,12 +160,42 @@ $(document).ready(function () {
             secondsRemaining = secondsRemaining - 15;
 
           }
+
+          var radioOptions = document.querySelectorAll('input[type="radio"]');
+          let selectedOption;
+
+          for (const radioOption of radioOptions){
+            if (radioOption.checked){
+            selectedOption = radioOption.value;
+            break
+            }
+          } 
+
+           if (selectedOption < 0) {
+            $("#ansNeeded").html("Please select an answer.")
+            console.log(selectedOption);
+          }else {
+            displayQuestion();
+          } 
+
+          questionIndex++;
+
+          if ((questionIndex < questionList.length) && (value.length > 0)) {
+            displayQuestion();
+
+          } else {
+            $('.quiz_box').hide()
+            $('.result_box').show();
+            $('#ansSelect').show();
+          
+        }
       });
 
-        //ansSelect.innerText = selectedOption ? `You selected ${selectedOption}` : `You have not made a selection`;
-        questionIndex++;
+      
 
-        if ((questionIndex < questionList.length) && (selectedOption.length > 0)) {
+        
+
+        /* if ((questionIndex < questionList.length) && (value.length > 0)) {
             displayQuestion();
 
         } else {
@@ -183,7 +203,7 @@ $(document).ready(function () {
           $('.result_box').show();
           $('#ansSelect').show();
           
-        }
+        } */
 
     });
 
