@@ -8,6 +8,7 @@
     box-sizing: border-box;
     font-family: 'Barlow Condensed', sans-serif;
 }
+
 body{
     background: #8fdcff;
     position: fixed;
@@ -17,14 +18,32 @@ body{
     
 }
 
+section{
+    padding-top: 5%;
+}
+
+.answerOptions {
+    display: inline-flex;
+}
+
 .btn, .nxtButton {
-    padding: 2%;
+    padding: 5%;
     align-items: center;
+    text-align: center;
+}
+
+.contbtn {
+    padding: revert;
 }
 
 .label {
     padding-right: 2%;
      
+}
+
+.question {
+    text-align: center;
+    padding-bottom: 5%;
 }
 
 .rule_box {
