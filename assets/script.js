@@ -1,7 +1,5 @@
 var questionIndex = 0;
 
-
-
 var questionList = [
 
     {
@@ -82,7 +80,8 @@ function displayQuestion() {
         })
         answers.appendTo('.answerOptions');
     }
-
+        var x = $("input[type=radio]:checked").val();
+        console.log(x);
 }
 
 $(document).ready(function () {
@@ -107,7 +106,7 @@ $(document).ready(function () {
             }
         }
 
-        $('.info_box').hide();
+        $('.rule_box').hide();
         $('.nxtButton').show();
         displayQuestion();
 
@@ -123,7 +122,6 @@ $(document).ready(function () {
     );
 
     $('.contbtn').click(function () {
-        console.log("clickeddd")
         questionIndex++;
         if (questionIndex < questionList.length) {
             displayQuestion();

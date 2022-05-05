@@ -17,10 +17,29 @@ body{
     
 }
 
-.title, .info_box {
+.btn, .nxtButton {
+    padding: 2%;
+    align-items: center;
+}
+
+.label {
+    padding-right: 2%;
+     
+}
+
+.rule_box {
     text-align: center;
+    padding: 5%;
+    font-size: large;
 }
 
 #timer {
     text-align: center;
+}
+
+.title {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    padding: 5%;
 }
