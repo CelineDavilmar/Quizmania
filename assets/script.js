@@ -80,8 +80,7 @@ function displayQuestion() {
         })
         answers.appendTo('.answerOptions');
     }
-        var x = $("input[type=radio]:checked").val();
-        console.log(x);
+  
 }
 
 $(document).ready(function () {
@@ -126,6 +125,9 @@ $(document).ready(function () {
         if (questionIndex < questionList.length) {
             displayQuestion();
         }
+
+        var x = $("input[type=radio]:checked").val();
+        console.log(x);
 
     });
 

@@ -24,6 +24,8 @@ section{
 
 .answerOptions {
     display: inline-flex;
+    align-items: center;
+    text-align: start;
 }
 
 .btn, .nxtButton {
@@ -32,13 +34,14 @@ section{
     text-align: center;
 }
 
-.contbtn {
+.contbtn, #start {
     padding: revert;
+    font-weight: bold;
 }
 
 .label {
-    padding-right: 2%;
-     
+    padding-right: 5%;
+    padding-left: 2%;
 }
 
 .question {
