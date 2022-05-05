@@ -66,25 +66,27 @@ var questionList = [
 
 var secondsRemaining;
 var timeHandler;
+var radioSelector;
 
 function displayQuestion() {
     $(".question").html(questionList[questionIndex].question);
     $('.answerOptions').empty();
     for (i = 0; i < 4; i++) {
-        var radioBtn = $('<input type="radio" name="rbtnOptions" class="radiobtn"/>');
+        var radioBtn = $('<input type="radio" name="rbtnOptions" id="radiobtn" class="radiobtn" value="' + i +'"/>');
         radioBtn.appendTo('.answerOptions');
         var answers = $(document.createElement('label')).prop({
             type: 'label',
             innerHTML: questionList[questionIndex].options[i],
-            class: 'label'
+            class: 'label',
+            value: "text"
         })
         answers.appendTo('.answerOptions');
     }
-  
 }
 
 $(document).ready(function () {
     $('.nxtButton').hide();
+    $('#ansSelect').hide();
 
     $("#start").click(function () {
 
@@ -121,13 +123,27 @@ $(document).ready(function () {
     );
 
     $('.contbtn').click(function () {
-        questionIndex++;
-        if (questionIndex < questionList.length) {
-            displayQuestion();
+        
+        var radioOptions = document.querySelectorAll('input[type="radio"]');
+        let selectedOption;
+
+        for (const radioOption of radioOptions){
+          if (radioOption.checked){
+            selectedOption = radioOption.value;
+            break
+          }
         }
 
-        var x = $("input[type=radio]:checked").val();
-        console.log(x);
+        ansSelect.innerText = selectedOption ? `You selected ${selectedOption}` : `You have not made a selection`;
+
+
+        questionIndex++;
+
+        if ((questionIndex < questionList.length) && (radioOptions.checked)) {
+            displayQuestion();
+        } else {
+          
+        }
 
     });
 
