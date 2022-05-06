@@ -92,19 +92,17 @@ $(document).ready(function () {
     $('.nxtButton').hide();
     $('#ansSelect').hide();
     $('.result_box').hide();
-    $('#ansPrompt').hide()
 
     $('#start, .restart').click(function() {
 
         $('.rule_box').hide();
         $('.nxtButton').show();
-        //$('.result_box').hide();
         $('.quiz_box').show();
+        $('#ansPrompt').hide()
         displayQuestion();
 
         secondsRemaining = 150;
         timeHandler = setInterval(countdownTimer, 1000);
-        //let selectedAnswer = $('input[type="radio"]:checked').value;
 
         function countdownTimer() {
             document.getElementById('timer').innerHTML = "You have " + secondsRemaining + " seconds left";
@@ -157,8 +155,6 @@ $(document).ready(function () {
           correctChoice.appendTo('#correctSelect');
 
           if(value != questionList[questionIndex].ans){
-            console.log(value);
-            console.log(questionList[questionIndex].ans)
             secondsRemaining = secondsRemaining - 15;
           } else {
             score++;
@@ -178,13 +174,12 @@ $(document).ready(function () {
         }
       });
 
-      if(!$('input[type="radio"]:checked').is(':checked')){
+      /* if(!$('input[type="radio"]:checked').is(':checked')){
         document.getElementById('ansPrompt').innerHTML = "Please select an answer choice to continue!";
         $('#ansPrompt').show()
       }else {
         displayQuestion();
-        
-      }
+      } */
 
     });
 
