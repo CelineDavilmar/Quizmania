@@ -1,5 +1,6 @@
 var questionIndex = 0;
 var answerIndex = 1;
+let score = 0;
 
 var questionList = [
 
@@ -45,7 +46,7 @@ var questionList = [
     },
     {
         question: "How to declare a variable in JavaScript?",
-        ans: "eXtensible Markup Language",
+        ans: "var date = current",
         options: [
             "a = 5;",
             "const name = cat;",
@@ -84,12 +85,14 @@ function displayQuestion() {
         })
         answers.appendTo('.answerOptions');
     }
+
 }
 
 $(document).ready(function () {
     $('.nxtButton').hide();
     $('#ansSelect').hide();
     $('.result_box').hide();
+    $('#ansPrompt').hide()
 
     $('#start, .restart').click(function() {
 
@@ -101,7 +104,7 @@ $(document).ready(function () {
 
         secondsRemaining = 150;
         timeHandler = setInterval(countdownTimer, 1000);
-        let selectedAnswer = $('input[type="radio"]:checked').value;
+        //let selectedAnswer = $('input[type="radio"]:checked').value;
 
         function countdownTimer() {
             document.getElementById('timer').innerHTML = "You have " + secondsRemaining + " seconds left";
@@ -125,11 +128,14 @@ $(document).ready(function () {
             innerHTML: 'Continue',
             class: 'contbtn',
         })
-    );
+    ); 
+
 
     $('.contbtn').click(function () {
 
         $('input[type="radio"]:checked').each(function() {
+          
+          $('#ansPrompt').hide()
           let id = answerIndex++;
           let value = $(this).val();
           localStorage.setItem(id, value);
@@ -151,28 +157,12 @@ $(document).ready(function () {
           correctChoice.appendTo('#correctSelect');
 
           if(value != questionList[questionIndex].ans){
-            //console.log(value);
-            //console.log(questionList[questionIndex].ans)
+            console.log(value);
+            console.log(questionList[questionIndex].ans)
             secondsRemaining = secondsRemaining - 15;
-          }
-
-          //var radioOptions = document.querySelectorAll('input[type="radio"]');
-          //let selectedOption;
-
-          /* for (const radioOption of radioOptions){
-            if (radioOption.checked){
-            selectedOption = radioOption.value;
-            break
-            }
-          } */ 
-
-        if (!$('input[type="radio"]').is(":checked")) {
-            $(".answerOptions").appendTo("Please select an answer.")
-            console.log(selectedOption);
-          }else {
-            displayQuestion();
+          } else {
+            score++;
           } 
-
           questionIndex++;
 
           if ((questionIndex < questionList.length) && (value.length > 0)) {
@@ -183,9 +173,18 @@ $(document).ready(function () {
             $('.result_box').show();
             $('#ansSelect').show();
             clearInterval(timeHandler);
+            document.getElementById('score').innerHTML = "Your score is " + score + " !";
           
         }
       });
+
+      if(!$('input[type="radio"]:checked').is(':checked')){
+        document.getElementById('ansPrompt').innerHTML = "Please select an answer choice to continue!";
+        $('#ansPrompt').show()
+      }else {
+        displayQuestion();
+        
+      }
 
     });
 
