@@ -101,7 +101,7 @@ $(document).ready(function () {
 
         secondsRemaining = 150;
         timeHandler = setInterval(countdownTimer, 1000);
-        let x = $('input[type="radio"]:checked').value;
+        let selectedAnswer = $('input[type="radio"]:checked').value;
 
         function countdownTimer() {
             document.getElementById('timer').innerHTML = "You have " + secondsRemaining + " seconds left";
@@ -110,12 +110,11 @@ $(document).ready(function () {
             if (secondsRemaining < 0) {
                 clearInterval(timeHandler);
                 alert("Times up.");
+                $('.quiz_box').hide()
+                $('.result_box').show();
+                $('#ansSelect').show();
 
-            } /* if (x != questionList[questionIndex].ans[i]){
-              console.log(x);
-              console.log(questionList[questionIndex].ans[i]);
-              secondsRemaining = secondsRemaining - 15;
-            } */
+            } 
         }
 
     });
@@ -151,28 +150,24 @@ $(document).ready(function () {
         })
           correctChoice.appendTo('#correctSelect');
 
-          //$('ansSelect').append(localStorage.getItem(value));
-          //return false;
-
           if(value != questionList[questionIndex].ans){
-            console.log(value);
-            console.log(questionList[questionIndex].ans)
+            //console.log(value);
+            //console.log(questionList[questionIndex].ans)
             secondsRemaining = secondsRemaining - 15;
-
           }
 
-          var radioOptions = document.querySelectorAll('input[type="radio"]');
-          let selectedOption;
+          //var radioOptions = document.querySelectorAll('input[type="radio"]');
+          //let selectedOption;
 
-          for (const radioOption of radioOptions){
+          /* for (const radioOption of radioOptions){
             if (radioOption.checked){
             selectedOption = radioOption.value;
             break
             }
-          } 
+          } */ 
 
-           if (selectedOption < 0) {
-            $("#ansNeeded").html("Please select an answer.")
+        if (!$('input[type="radio"]').is(":checked")) {
+            $(".answerOptions").appendTo("Please select an answer.")
             console.log(selectedOption);
           }else {
             displayQuestion();
@@ -187,23 +182,10 @@ $(document).ready(function () {
             $('.quiz_box').hide()
             $('.result_box').show();
             $('#ansSelect').show();
+            clearInterval(timeHandler);
           
         }
       });
-
-      
-
-        
-
-        /* if ((questionIndex < questionList.length) && (value.length > 0)) {
-            displayQuestion();
-
-        } else {
-          $('.quiz_box').hide()
-          $('.result_box').show();
-          $('#ansSelect').show();
-          
-        } */
 
     });
 
