@@ -1,4 +1,6 @@
 var questionIndex = 0;
+var answerIndex = 1;
+let score = 0;
 
 var questionList = [
 
@@ -44,7 +46,7 @@ var questionList = [
     },
     {
         question: "How to declare a variable in JavaScript?",
-        ans: "eXtensible Markup Language",
+        ans: "var date = current",
         options: [
             "a = 5;",
             "const name = cat;",
@@ -66,19 +68,21 @@ var questionList = [
 
 var secondsRemaining;
 var timeHandler;
-var value;
+var radioSelector;
+
 
 function displayQuestion() {
     $(".question").html(questionList[questionIndex].question);
     $('.answerOptions').empty();
 
     for (i = 0; i < 4; i++) {
-        var radioBtn = $('<input type="radio" name="rbtnOptions" class="radiobtn"/>');
+        var radioBtn = $('<input type="radio" name="selection" id="radiobtn" class="radiobtn" value="' + questionList[questionIndex].options[i] + '"/>');
         radioBtn.appendTo('.answerOptions');
         var answers = $(document.createElement('label')).prop({
             type: 'label',
             innerHTML: questionList[questionIndex].options[i],
-            class: 'label'
+            class: 'label',
+            value: "text"
         })
         answers.appendTo('.answerOptions');
     }
@@ -87,8 +91,16 @@ function displayQuestion() {
 $(document).ready(function () {
 
     $('.nxtButton').hide();
+    $('#ansSelect').hide();
+    $('.result_box').hide();
 
-    $("#start").click(function () {
+    $('#start, .restart').click(function () {
+
+        $('.rule_box').hide();
+        $('.nxtButton').show();
+        $('.quiz_box').show();
+        $('#ansPrompt').hide()
+        displayQuestion();
 
         secondsRemaining = 150;
         timeHandler = setInterval(countdownTimer, 1000);
@@ -100,20 +112,12 @@ $(document).ready(function () {
             if (secondsRemaining < 0) {
                 clearInterval(timeHandler);
                 alert("Times up.");
+                $('.quiz_box').hide()
+                $('.result_box').show();
+                $('#ansSelect').show();
 
-
-            } else  //if (value != questionList[questionIndex].ans[i]) 
-            {
-                //wrong answer choosen -15 seconds
-                //secondsRemaining -= 15
             }
         }
-
-        $('.info_box').hide();
-        $('.nxtButton').show();
-        displayQuestion();
-
-
 
     });
 
@@ -125,19 +129,55 @@ $(document).ready(function () {
         })
     );
 
+
     $('.contbtn').click(function () {
 
-        questionIndex++;
+        $('input[type="radio"]:checked').each(function () {
 
-        if (questionIndex < questionList.length) {
-            displayQuestion();
-        } else {
-            clearInterval(timeHandler);
-            secondsRemaining === 0;
-        }
-        value = $('input[type="radio"]:checked').val();
-        console.log(value);
+            $('#ansPrompt').hide()
+            let id = answerIndex++;
+            let value = $(this).val();
+            localStorage.setItem(id, value);
+
+            var answerChoice = $(document.createElement('li')).prop({
+                type: 'li',
+                innerHTML: value,
+                class: 'answerChoices',
+                value: "text"
+            })
+            answerChoice.appendTo('#ansSelect');
+
+            var correctChoice = $(document.createElement('li')).prop({
+                type: 'li',
+                innerHTML: questionList[questionIndex].ans,
+                class: 'correctanswerChoices',
+                value: "text"
+            })
+            correctChoice.appendTo('#correctSelect');
+
+            if (value != questionList[questionIndex].ans) {
+                secondsRemaining = secondsRemaining - 15;
+            } else {
+                score++;
+            }
+            questionIndex++;
+
+            if ((questionIndex < questionList.length) && (value.length > 0)) {
+                displayQuestion();
+
+            } else {
+                $('.quiz_box').hide()
+                $('.result_box').show();
+                $('#ansSelect').show();
+                clearInterval(timeHandler);
+                document.getElementById('score').innerHTML = "Your score is " + score + " !";
+
+            }
+        });
+
+
     });
+
 
 
 });

@@ -8,6 +8,7 @@
     box-sizing: border-box;
     font-family: 'Barlow Condensed', sans-serif;
 }
+
 body{
     background: #8fdcff;
     position: fixed;
@@ -17,10 +18,50 @@ body{
     
 }
 
-.title, .info_box {
+section{
+    padding-top: 5%;
+}
+
+.answerOptions {
+    display: inline-flex;
+    align-items: center;
+    text-align: start;
+}
+
+.btn, .nxtButton {
+    padding: 5%;
+    align-items: center;
     text-align: center;
+}
+
+.contbtn, #start {
+    padding: revert;
+    font-weight: bold;
+}
+
+.label {
+    padding-right: 5%;
+    padding-left: 2%;
+}
+
+.question {
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.rule_box {
+    text-align: center;
+    padding: 5%;
+    font-size: large;
 }
 
 #timer {
     text-align: center;
+}
+
+.title {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    padding: 5%;
 }
