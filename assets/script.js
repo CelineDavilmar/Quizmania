@@ -1,7 +1,5 @@
 var questionIndex = 0;
 
-
-
 var questionList = [
 
     {
@@ -68,10 +66,12 @@ var questionList = [
 
 var secondsRemaining;
 var timeHandler;
+var value;
 
 function displayQuestion() {
     $(".question").html(questionList[questionIndex].question);
     $('.answerOptions').empty();
+
     for (i = 0; i < 4; i++) {
         var radioBtn = $('<input type="radio" name="rbtnOptions" class="radiobtn"/>');
         radioBtn.appendTo('.answerOptions');
@@ -82,10 +82,10 @@ function displayQuestion() {
         })
         answers.appendTo('.answerOptions');
     }
-
 }
 
 $(document).ready(function () {
+
     $('.nxtButton').hide();
 
     $("#start").click(function () {
@@ -100,16 +100,19 @@ $(document).ready(function () {
             if (secondsRemaining < 0) {
                 clearInterval(timeHandler);
                 alert("Times up.");
-                location.reload();
 
-            } else {
+
+            } else  //if (value != questionList[questionIndex].ans[i]) 
+            {
                 //wrong answer choosen -15 seconds
+                //secondsRemaining -= 15
             }
         }
 
         $('.info_box').hide();
         $('.nxtButton').show();
         displayQuestion();
+
 
 
     });
@@ -123,12 +126,17 @@ $(document).ready(function () {
     );
 
     $('.contbtn').click(function () {
-        console.log("clickeddd")
+
         questionIndex++;
+
         if (questionIndex < questionList.length) {
             displayQuestion();
+        } else {
+            clearInterval(timeHandler);
+            secondsRemaining === 0;
         }
-
+        value = $('input[type="radio"]:checked').val();
+        console.log(value);
     });
 
 
